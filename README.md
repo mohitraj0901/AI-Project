@@ -9,164 +9,183 @@
 
 AgroTech AI is a **Machine Learning powered smart agriculture web application** that helps farmers make data-driven decisions by recommending suitable crops and irrigation techniques based on soil nutrients and environmental conditions.
 
-The system uses **Random Forest Machine Learning models** integrated with a Flask backend to provide real-time predictions through an interactive web interface.
+The application uses **Random Forest Machine Learning models** integrated with a **Flask backend** to provide real-time predictions.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
-🌾 **Crop Recommendation System**
-- Predicts the most suitable crop based on:
-  - Nitrogen (N)
-  - Phosphorus (P)
-  - Potassium (K)
-  - Temperature
-  - Humidity
-  - Soil pH
-  - Rainfall
+## 🌾 Crop Recommendation
 
-💧 **Irrigation Prediction System**
-- Suggests suitable irrigation methods:
-  - Drip Irrigation
-  - Sprinkler Irrigation
-  - Surface Irrigation
-  - Pivot Irrigation
+Predicts the best suitable crop using:
 
-Based on:
-- Soil type
-- Crop type
+- Nitrogen (N)
+- Phosphorus (P)
+- Potassium (K)
 - Temperature
-- Moisture level
-- Geographical location
+- Humidity
+- Soil pH
+- Rainfall
 
-📊 **User-Friendly Interface**
-- Simple web interface designed for easy agricultural decision-making.
+Output:
+
+- Recommended Crop (Rice, Wheat, Cotton, Maize, etc.)
 
 ---
 
-## 🧠 Tech Stack
+## 💧 Irrigation Prediction
 
-### Backend
+Suggests suitable irrigation techniques based on:
+
+- Soil Type
+- Crop Type
+- Average Temperature
+- Moisture Level
+- Geographical Location
+
+Output examples:
+
+- Drip Irrigation
+- Sprinkler Irrigation
+- Surface Irrigation
+
+---
+
+# 🛠️ Tech Stack
+
+## Backend
+
 - Python
 - Flask
 - Flask-CORS
 
-### Frontend
+## Frontend
+
 - HTML5
 - CSS3
 - JavaScript
 
-### Machine Learning
+## Machine Learning
+
 - scikit-learn
 - Random Forest Classifier
 - Pandas
 - NumPy
 - Joblib
 
-### Deployment
+## Deployment
+
 - Docker
 - Render
 
 ---
 
-## 🤖 Machine Learning Workflow
+# 🤖 Machine Learning Workflow
 
 
-### 🌾 Crop Recommendation Model
+## 🌾 Crop Recommendation Model
 
 Dataset:
+
 - Kaggle Crop Recommendation Dataset
 
 Features:
 
-
-Nitrogen (N)
-Phosphorus (P)
-Potassium (K)
+```
+N
+P
+K
 Temperature
 Humidity
 pH
 Rainfall
-
+```
 
 Model:
 
-
+```
 Random Forest Classifier
-
+```
 
 Output:
 
-
+```
 Recommended Crop
-(Rice, Wheat, Cotton, Maize, etc.)
+```
 
+Performance:
 
-Model Performance:
-
-
+```
 Accuracy: ~99%
-
-
+```
 
 ---
 
-### 💧 Irrigation Prediction Model
+## 💧 Irrigation Prediction Model
+
 
 Features:
 
-
+```
 Soil Type
 Crop Type
 Average Temperature
 Moisture Level
 Location
+```
 
+Model:
+
+```
+Random Forest Classifier
+```
 
 Output:
 
-
+```
 Recommended Irrigation Technique
-
-
-Examples:
-
-
-Drip Irrigation
-Sprinkler Irrigation
-Surface Irrigation
-
-
+```
 
 ---
 
-## ⚙️ Backend Architecture
+# ⚙️ Backend Architecture
 
+
+```
 User Input
-|
-|
-Flask API
-|
 
-| |
-Crop Model Irrigation Model
-(Random Forest) (Random Forest)
+      |
+      |
+      v
 
- |
+ Flask API
 
-Prediction Response
+      |
+      |
 
+ ------------------------
 
-Models are trained separately and saved using **Joblib serialization**.
+ |                      |
 
-The Flask backend loads the trained `.pkl` models and provides predictions through REST APIs.
+Crop Model        Irrigation Model
+
+(Random Forest)   (Random Forest)
+
+      |
+      |
+ Prediction Response
+```
+
+The trained models are saved using **Joblib serialization**.
+
+Flask loads the `.pkl` models and provides predictions using REST APIs.
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 
-
+```
 AI-Project/
 
 │
@@ -183,58 +202,73 @@ AI-Project/
 ├── label_encoders.pkl
 │
 ├── templates/
-│
 ├── static/
 │
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
 
+```
 
 ---
 
-## ⚠️ Challenges Faced
+# ⚠️ Challenges Faced
 
-- Processing categorical agricultural features
-- Encoding crop, soil and location data
-- Selecting suitable ML algorithms
-- Integrating ML models with Flask APIs
-- Deploying ML-based application on cloud
+- Processing agricultural datasets
+- Encoding categorical features
+- Training accurate ML models
+- Connecting ML models with Flask APIs
+- Deploying ML application on cloud
 
 ---
 
-## 🔮 Future Improvements
+# 🔮 Future Improvements
 
-- Integration with real-time weather APIs
-- Satellite-based crop monitoring
+- Real-time weather API integration
+- Satellite based crop monitoring
 - Plant disease detection using Computer Vision
-- Voice assistant support for farmers
+- Voice assistant for farmers
 - Regional language support
 - Larger real-world agricultural datasets
 
 ---
 
-## ▶️ Run Locally
+# ▶️ Run Locally
 
 
-Clone repository
+Clone the repository
 
 ```bash
 git clone https://github.com/mohitraj0901/AI-Project
+```
 
-Move into project folder
 
+Move to project folder
+
+```bash
 cd AI-Project
+```
+
 
 Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
+
 
 Run Flask application
 
+```bash
 python flask_web_app.py
-👨‍💻 Developer
+```
 
-Mohit Raj
-B.Tech CSE (AI & Data Science)
-IIIT Ranchi
+---
+
+# 👨‍💻 Developer
+
+**Mohit Raj**
+
+B.Tech CSE (AI & Data Science)  
+Indian Institute of Information Technology Ranchi
+
