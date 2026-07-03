@@ -1,27 +1,90 @@
-# save_crop_model.py
+# crop_r_m_training_and_saving.py
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 import joblib
 
-# Sample training data (dummy data, you can replace with real)
-data = pd.DataFrame({
-    'Previous Crop': [1, 2, 3, 4, 5, 6, 7],
-    'Soil Type': [1, 2, 3, 4, 1, 2, 3],
-    'Moisture Level': [25, 35, 30, 40, 20, 32, 28],
-    'Nitrogen (N)': [50, 60, 40, 70, 65, 55, 45],
-    'Phosphorus (P)': [30, 40, 20, 35, 45, 30, 25],
-    'Potassium (K)': [20, 30, 25, 40, 35, 30, 20],
-    'Crop': [1, 2, 3, 4, 5, 6, 7]  # Labels: 1=Wheat, 2=Rice, etc.
-})
 
-X = data.drop(columns=['Crop'])
-y = data['Crop']
+# Load dataset
+data = pd.read_csv("Crop_recommendation.csv")
 
-# Train model
-model = RandomForestClassifier()
-model.fit(X, y)
 
-# Save model
-joblib.dump(model, 'crop_rotation_recommendation_model.pkl')
-print("Model saved as 'crop_rotation_recommendation_model.pkl'")
+# Check dataset
+print(data.head())
+
+
+# Features
+X = data[
+    [
+        "N",
+        "P",
+        "K",
+        "temperature",
+        "humidity",
+        "ph",
+        "rainfall"
+    ]
+]
+
+
+# Target
+y = data["label"]
+
+
+# Train test split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# Create Random Forest Model
+
+model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+
+# Train
+
+model.fit(
+    X_train,
+    y_train
+)
+
+
+# Test
+
+prediction = model.predict(X_test)
+
+
+accuracy = accuracy_score(
+    y_test,
+    prediction
+)
+
+
+print(
+    "Model Accuracy:",
+    accuracy * 100,
+    "%"
+)
+
+
+# Save trained model
+
+joblib.dump(
+    model,
+    "crop_recommendation_model.pkl"
+)
+
+
+print(
+    "Model saved as crop_recommendation_model.pkl"
+)
